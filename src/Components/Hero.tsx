@@ -68,7 +68,7 @@ function Hero() {
           Maintained by Kenneth Pole.
         </p>
       </div>
-      <div className="text-center text-white">
+      <div className="text-center">
         <h1 className="text-2xl font-bold mb-2">Lily</h1>
         <p className="text-sm font-semibold mb-2">Your AI Assistant.</p>
         <p className="text-sm mb-2">

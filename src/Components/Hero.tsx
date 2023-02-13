@@ -33,7 +33,7 @@ function Hero() {
       <div className="w-full text-white p-4 rounded-lg md:w-fit md:mx-auto">
         <div className="text-left mb-4">
           <h1 className="text-2xl font-bold mb-2 md:text-center">Lily.</h1>
-          <p className="text-xs mb-2">
+          <p className="text-xs mb-2 md:text-md md:text-center">
             Your AI Assistant. Ask your questions short, long or anything in
             between. The more precise you ask, the better the answer.
           </p>

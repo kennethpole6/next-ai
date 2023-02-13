@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import { Inter } from "@next/font/google";
 
 export const config = {
-  runtime: "edge",
+  runtime: "experimental-edge",
 };
 
 const inter = Inter({ subsets: ["latin"] });

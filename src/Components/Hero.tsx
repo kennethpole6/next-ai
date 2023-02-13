@@ -29,10 +29,10 @@ function Hero() {
   }
 
   return (
-    <div className="p-4 relative h-[100vh] overflow-y-auto font-primary">
-      <div className="w-full bg-white p-4 rounded-lg md:w-fit md:mx-auto">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-2">Lily.</h1>
+    <div className="h-[100vh] overflow-y-auto font-primary">
+      <div className="w-full text-white p-4 rounded-lg md:w-fit md:mx-auto">
+        <div className="text-left mb-4">
+          <h1 className="text-2xl font-bold mb-2 md:text-center">Lily.</h1>
           <p className="text-xs mb-2">
             Your AI Assistant. Ask your questions short, long or anything in
             between. The more precise you ask, the better the answer.
@@ -63,7 +63,7 @@ function Hero() {
                   </svg>
                 </button>
                 <input
-                  className="w-full bg-white rounded-lg border-1 border-neutral-700 py-2 pl-2 pr-3 focus:border-neutral-800 focus:ring-neutral-900"
+                  className="w-full bg-white text-black rounded-md border-1 border-neutral-700 py-2 pl-2 pr-3 focus:border-neutral-800 focus:ring-neutral-900"
                   placeholder="Ask me anything..."
                   type="text"
                   {...register("generate", {
@@ -82,7 +82,7 @@ function Hero() {
               sequence={[item]}
               speed={50}
               cursor={false}
-              className="bg-white p-2 rounded-lg"
+              className="text-white bg-gray-900 p-4"
             />
           </div>
         ))}

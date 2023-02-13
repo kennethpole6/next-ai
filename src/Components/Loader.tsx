@@ -3,10 +3,7 @@ import React from "react";
 function Loader() {
   return (
     <div className="flex justify-center" aria-label="Loading..." role="status">
-      <svg
-        className="h-6 w-6 animate-spin stroke-gray-500"
-        viewBox="0 0 256 256"
-      >
+      <svg className="h-6 w-6 animate-spin stroke-white" viewBox="0 0 256 256">
         <line
           x1="128"
           y1="32"

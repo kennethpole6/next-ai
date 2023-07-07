@@ -1,31 +1,25 @@
-import React, { SetStateAction, useState } from "react";
-import { Configuration, OpenAIApi } from "openai";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { TypeAnimation } from "react-type-animation";
 import Loader from "./Loader";
+
 function Hero() {
-  const [response, setResponse] = useState<any>([]);
+  const [response, setResponse] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const { register, handleSubmit } = useForm();
 
-  const configuration = new Configuration({
-    apiKey: process.env.NEXT_PUBLIC_API_KEY,
-    organization: process.env.NEXT_PUBLIC_ORG_ID,
-  });
-  const openai = new OpenAIApi(configuration);
-
-  async function onSubmit(data: any) {
+  //generate answers
+  async function onSubmit(req: any) {
     setLoading(true);
-    const res = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: data.generate,
-      temperature: 0,
-      max_tokens: 2048,
-    });
-    if (res) {
+    const prompt = req.generate.toString()?.trim();
+    const response = await fetch(
+      `/api/generate?prompt=${encodeURIComponent(prompt)}`
+    );
+    const body = await response.json();
+    if (body) {
+      setResponse((prevValue) => [...prevValue, body.response]);
       setLoading(false);
     }
-    setResponse((prevValue: any) => [...prevValue, res.data.choices[0].text]);
   }
 
   return (
@@ -89,6 +83,11 @@ function Hero() {
             />
           </div>
         ))}
+        {/* {response.map((data, index) => (
+          <pre key={index} className="text-white w-60">
+            {data}
+          </pre>
+        ))} */}
         {loading && <Loader />}
       </div>
     </div>

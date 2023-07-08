@@ -10,14 +10,16 @@ function Hero() {
 
   //generate answers
   async function onSubmit(req: any) {
-    setLoading(true);
-    const prompt = req.generate.toString()?.trim();
-    const response = await fetch(
-      `/api/generate?prompt=${encodeURIComponent(prompt)}`
-    );
-    const body = await response.json();
-    if (body) {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        "/api/generate?prompt=" + encodeURIComponent(req.generate)
+      );
+      const body = await response.json();
       setResponse((prevValue) => [...prevValue, body.response]);
+    } catch (error) {
+      console.error(error);
+    } finally {
       setLoading(false);
     }
   }

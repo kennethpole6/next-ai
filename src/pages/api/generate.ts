@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
 
 const configuration = new Configuration({
@@ -11,22 +12,21 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const prompt = req.query.prompt;
+  const prompt = req.query?.prompt;
+
   if (!prompt) {
-    return res.status(400).json({ error: "Prompt missing" });
+    return NextResponse.json({ error: "Prompt missing" }, { status: 400 });
   }
 
   if (prompt.length > 100) {
-    return res.status(400).json({ error: "Prompt too long" });
+    return NextResponse.json({ error: "Prompt too long" }, { status: 400 });
   }
 
   const completion = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: `provide answers exclusively related to haircare tips and do not answer any question not related to haircare tips.\n Questions: ${prompt}`,
     max_tokens: 500,
-    temperature: 1,
-    presence_penalty: 0,
-    frequency_penalty: 0,
+    temperature: 0.2,
   });
 
   const response = completion.data.choices[0].text;
